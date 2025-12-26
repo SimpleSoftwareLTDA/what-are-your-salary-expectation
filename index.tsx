@@ -1,5 +1,7 @@
 // @ts-ignore
 window.process = { env: { NINJA_API_KEY: '', API_KEY: '' } };
+
+
 // Mapping specialized key to generic key
 // @ts-ignore
 window.process.env.API_KEY = window.process.env.NINJA_API_KEY || window.process.env.API_KEY;
