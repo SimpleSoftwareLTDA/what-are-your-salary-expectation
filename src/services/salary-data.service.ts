@@ -75,7 +75,7 @@ export class SalaryDataService {
             currency: currency,
             period: period,
             confidence: job.confidence || 'UNKNOWN',
-            publisher_link: '#',
+            publisher_link: 'https://www.glassdoor.com',
             updated_at: new Date().toISOString()
           };
         });
