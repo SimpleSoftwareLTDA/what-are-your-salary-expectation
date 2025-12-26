@@ -54,10 +54,9 @@ export class AppComponent {
     this.searched.set(true);
 
     const { jobTitle, location } = this.searchForm.getRawValue();
-    const query = `${jobTitle} in ${location}`.trim();
 
+    this.salaryDataService.searchSalaries(jobTitle || '', location || '', this.useMockData())
 
-    this.salaryDataService.searchSalaries(query, this.useMockData())
       .pipe(
         finalize(() => this.loading.set(false))
       )

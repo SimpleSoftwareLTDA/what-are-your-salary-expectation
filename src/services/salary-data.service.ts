@@ -20,7 +20,8 @@ interface PiloterrResponse {
 })
 export class SalaryDataService {
   private http = inject(HttpClient);
-  private apiUrl = '/api/v2/glassdoor/job-salary';
+  private apiUrl = '/ninja-api/jsearch/estimated-salary';
+
 
   private apiKey = process.env.API_KEY;
 
@@ -32,12 +33,13 @@ export class SalaryDataService {
     { id: '5', title: 'DevOps Engineer', location: 'Seattle, WA', base_salary: '$170,000/yr', range: '$145K - $200K' },
   ];
 
-  searchSalaries(query: string, useMock: boolean): Observable<JobSalary[]> {
+  searchSalaries(jobTitle: string, location: string, useMock: boolean): Observable<JobSalary[]> {
+    const query = `${jobTitle} in ${location}`.trim();
     if (useMock) {
       // Filter mock data by query if possible
       const filtered = this.mockData.filter(j =>
-        j.title.toLowerCase().includes(query.toLowerCase()) ||
-        j.location.toLowerCase().includes(query.toLowerCase())
+        j.title.toLowerCase().includes(jobTitle.toLowerCase()) ||
+        j.location.toLowerCase().includes(location.toLowerCase())
       );
 
       return new Observable(observer => {
@@ -47,6 +49,7 @@ export class SalaryDataService {
         }, 1000);
       });
     }
+
 
     const apiKey = (window as any).process?.env?.API_KEY;
 
@@ -61,25 +64,36 @@ export class SalaryDataService {
     });
 
 
-    const params = { query };
+    const params = {
+      job_title: jobTitle,
+      location: location
+    };
+
 
     return this.http.get<any>(this.apiUrl, { headers, params }).pipe(
       map(response => {
-        // Based on Piloterr documentation: response is an array of jobs or an object containing it
-        const rawJobs = Array.isArray(response) ? response : (response.data || response.jobs || []);
-        return rawJobs.map((job: any, index: number) => ({
-          id: job.id || `job-${index}`,
-          title: job.job_title || job.title || 'Unknown Title',
-          location: job.location || 'Unknown Location',
-          base_salary: job.salary_base || job.base_salary || 'N/A',
-          range: job.salary_range || job.range || 'N/A'
-        }));
+        const rawJobs = response.data || [];
+        return rawJobs.map((job: any, index: number) => {
+          const currency = job.salary_currency || 'USD';
+          const period = job.salary_period === 'YEAR' ? '/yr' : (job.salary_period === 'MONTH' ? '/mo' : '');
+
+          const formatSalary = (val: number | null) => val ? new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 0 }).format(val) : 'N/A';
+
+          return {
+            id: `job-${index}`,
+            title: job.job_title || 'Unknown Title',
+            location: job.location || 'Unknown Location',
+            base_salary: `${formatSalary(job.median_base_salary)}${period}`,
+            range: `${formatSalary(job.min_base_salary)} - ${formatSalary(job.max_base_salary)}`
+          };
+        });
       }),
       catchError(error => {
         console.error('API Error:', error);
-        return throwError(() => new Error('Failed to fetch data from Piloterr API.'));
+        return throwError(() => new Error('Failed to fetch data from OpenWeb Ninja API.'));
       })
     );
+
   }
 }
 

@@ -1,10 +1,10 @@
 {
-    "/api/v2": {
-        "target": "https://piloterr.com",
+    "/ninja-api": {
+        "target": "https://api.openwebninja.com",
         "secure": true,
         "changeOrigin": true,
         "pathRewrite": {
-            "^/api/v2": "/api/v2"
+            "^/ninja-api": ""
         }
     }
 }
