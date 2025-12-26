@@ -24,32 +24,10 @@ export class SalaryDataService {
 
 
 
-  private apiKey = process.env.API_KEY;
 
-  private mockData: JobSalary[] = [
-    { id: '1', title: 'Senior Software Engineer', location: 'San Francisco, CA', base_salary: '$185,000/yr', range: '$150K - $220K' },
-    { id: '2', title: 'Product Manager', location: 'New York, NY', base_salary: '$160,000/yr', range: '$130K - $190K' },
-    { id: '3', title: 'Data Scientist', location: 'Austin, TX', base_salary: '$145,000/yr', range: '$120K - $170K' },
-    { id: '4', title: 'UX Designer', location: 'Remote', base_salary: '$130,000/yr', range: '$110K - $150K' },
-    { id: '5', title: 'DevOps Engineer', location: 'Seattle, WA', base_salary: '$170,000/yr', range: '$145K - $200K' },
-  ];
 
-  searchSalaries(jobTitle: string, location: string, useMock: boolean): Observable<JobSalary[]> {
-    const query = `${jobTitle} in ${location}`.trim();
-    if (useMock) {
-      // Filter mock data by query if possible
-      const filtered = this.mockData.filter(j =>
-        j.title.toLowerCase().includes(jobTitle.toLowerCase()) ||
-        j.location.toLowerCase().includes(location.toLowerCase())
-      );
+  searchSalaries(jobTitle: string, location: string): Observable<JobSalary[]> {
 
-      return new Observable(observer => {
-        setTimeout(() => {
-          observer.next(filtered.length > 0 ? filtered : this.mockData);
-          observer.complete();
-        }, 1000);
-      });
-    }
 
 
     const apiKey = (window as any).process?.env?.API_KEY;

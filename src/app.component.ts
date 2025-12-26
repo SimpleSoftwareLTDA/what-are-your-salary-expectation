@@ -34,7 +34,7 @@ export class AppComponent {
     location: ['San Francisco', Validators.required]
   });
 
-  useMockData = signal(true);
+
   loading = signal(false);
   error = signal<string | null>(null);
   results = signal<JobSalary[]>([]);
@@ -55,7 +55,8 @@ export class AppComponent {
 
     const { jobTitle, location } = this.searchForm.getRawValue();
 
-    this.salaryDataService.searchSalaries(jobTitle || '', location || '', this.useMockData())
+    this.salaryDataService.searchSalaries(jobTitle || '', location || '')
+
 
       .pipe(
         finalize(() => this.loading.set(false))
@@ -75,9 +76,7 @@ export class AppComponent {
 
   }
 
-  toggleMockData(): void {
-    this.useMockData.update(value => !value);
-  }
+
 
   toggleLanguage(): void {
     this.translations.language.update(lang => lang === 'en' ? 'pt' : 'en');

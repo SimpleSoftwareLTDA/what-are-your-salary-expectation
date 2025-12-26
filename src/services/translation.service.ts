@@ -11,7 +11,7 @@ const translations = {
     jobTitlePlaceholder: 'e.g., Senior Product Manager at Spotify',
     locationLabel: 'Location',
     locationPlaceholder: 'e.g., New York City',
-    useMockDataLabel: 'Use Mock Data',
+
     searchButton: 'Search Salaries',
     searchingButton: 'Searching...',
     noResultsTitle: 'No Results Yet',
@@ -38,7 +38,7 @@ const translations = {
     jobTitlePlaceholder: 'ex: Gerente de Produto Sênior no Spotify',
     locationLabel: 'Localidade',
     locationPlaceholder: 'ex: São Paulo',
-    useMockDataLabel: 'Usar Dados Fictícios',
+
     searchButton: 'Pesquisar Salários',
     searchingButton: 'Pesquisando...',
     noResultsTitle: 'Nenhum Resultado',
