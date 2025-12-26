@@ -43,6 +43,15 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Do not write arrow functions in templates (they are not supported).
 
 ## Services
+## Services
 - Design services around a single responsibility
 - Use the `providedIn: 'root'` option for singleton services
 - Use the `inject()` function instead of constructor injection
+
+## Package Management & Runtime
+- Use **Bun** as the primary runtime and package manager
+- Prefer `bun install` over `npm install`
+- Use `bun run` for script execution
+- Ensure `bun.lockb` is tracked in version control
+
+
