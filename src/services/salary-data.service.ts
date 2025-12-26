@@ -52,15 +52,17 @@ export class SalaryDataService {
 
 
     const apiKey = (window as any).process?.env?.API_KEY;
-    const headersConfig: any = {
-      'Content-Type': 'application/json'
-    };
 
-    if (apiKey) {
-      headersConfig['x-api-key'] = apiKey;
+    if (!apiKey) {
+      console.error('API_KEY environment variable is not set.');
+      return throwError(() => new Error('Search failed: API configuration missing.'));
     }
 
-    const headers = new HttpHeaders(headersConfig);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey
+    });
+
 
 
 
