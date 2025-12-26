@@ -14,7 +14,6 @@ export default {
         }
 
         // 2. Prepare the target URL
-        // Forward all query parameters (job_title, company, etc.)
         const targetUrl = new URL("https://api.openwebninja.com/jsearch/company-job-salary");
         url.searchParams.forEach((value, key) => {
             targetUrl.searchParams.set(key, value);
@@ -24,8 +23,8 @@ export default {
         const response = await fetch(targetUrl.toString(), {
             method: "GET",
             headers: {
-                "Content-Type": "application/json",
-                "x-api-key": env.NINJA_API_KEY, // Injected from Cloudflare Secrets
+                "x-api-key": env.NINJA_API_KEY,
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             },
         });
 
@@ -33,7 +32,9 @@ export default {
         const newHeaders = new Headers(response.headers);
         newHeaders.set("Access-Control-Allow-Origin", "*");
 
-        return new Response(response.body, {
+        const body = await response.text();
+
+        return new Response(body, {
             status: response.status,
             statusText: response.statusText,
             headers: newHeaders,
