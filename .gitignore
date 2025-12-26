@@ -1,4 +1,6 @@
-# Logs
+# Angular
+.angular/cache
+
 logs
 *.log
 npm-debug.log*
