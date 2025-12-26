@@ -43,17 +43,15 @@ export class SalaryDataService {
     }
 
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey
+      'Content-Type': 'application/json'
     });
-
-
-
 
     const params = {
       job_title: jobTitle,
       location: location
     };
+
+
 
 
     return this.http.get<any>(this.apiUrl, { headers, params }).pipe(
