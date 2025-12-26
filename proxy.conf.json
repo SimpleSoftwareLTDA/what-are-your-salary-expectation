@@ -7,7 +7,7 @@
             "^/ninja-api": ""
         },
         "headers": {
-            "x-api-key": "REPLACED_BY_SYNC_SCRIPT"
+            "x-api-key": ""
         }
     }
 }

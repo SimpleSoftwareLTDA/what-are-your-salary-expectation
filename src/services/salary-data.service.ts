@@ -48,20 +48,8 @@ export class SalaryDataService {
     });
 
 
-    // We need to extract company and job title from the single input or adjust the UI.
-    // For now, let's assume the user enters "Job Title at Company" or we just treat the input as job_title and maybe add a company field later?
-    // The user requirement says "change the api call to this... specific for a salary in a company".
-    // However, our UI has "Job Title" and "Location" inputs. 
-    // To support the new API properly, we should ideally have a company input. 
-    // But as a quick fix/transition, I will split the jobTitle input if it contains " at " or use a default/fallback strategy.
-    // OR, I can pass the location input as is, and use the jobTitle input as 'job_title' and maybe try to extract company?
-    // Wait, the new API has 'company' as a required parameter in the example curl? 
-    // curl '...company=Amazon&job_title=software%20developer...'
+    // The API uses explicit job_title and company parameters as requested in the new UI structure.
 
-    // Let's parse the jobTitle string. If it's "Software Engineer at Google", company="Google", title="Software Engineer".
-    // We no longer need to parse " at " because we have explicit inputs.
-    // The user requirement says "change the input fields to only ask for job tilte and company".
-    // It also implies the output should change.
 
     const params: any = {
       job_title: jobTitle,
