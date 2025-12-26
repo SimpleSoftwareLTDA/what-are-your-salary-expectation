@@ -20,29 +20,30 @@
     </header>
 
     <div class="w-full p-6 sm:p-8 bg-black/30 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl space-y-6">
-      <form (ngSubmit)="search()" class="space-y-6">
+      <form [formGroup]="searchForm" (ngSubmit)="search()" class="space-y-6">
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label for="jobTitle" class="block text-sm font-medium text-gray-300 mb-2">{{ translations.translate('jobTitleLabel')() }}</label>
             <input 
               id="jobTitle"
-              name="jobTitle"
+              formControlName="jobTitle"
               type="text" 
-              [(ngModel)]="jobTitleCompany"
               [placeholder]="translations.translate('jobTitlePlaceholder')()"
               class="w-full bg-gray-800/50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition duration-200"
             />
+
           </div>
           <div>
             <label for="location" class="block text-sm font-medium text-gray-300 mb-2">{{ translations.translate('locationLabel')() }}</label>
             <input 
               id="location"
-              name="location"
+              formControlName="location"
               type="text" 
-              [(ngModel)]="location"
               [placeholder]="translations.translate('locationPlaceholder')()"
               class="w-full bg-gray-800/50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition duration-200"
             />
+
           </div>
         </div>
         

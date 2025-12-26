@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+
 import { finalize } from 'rxjs/operators';
 
 import { SalaryDataService, JobSalary } from './services/salary-data.service';
@@ -15,54 +16,64 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     ResultsListComponent,
     SpinnerComponent,
     ErrorMessageComponent,
   ],
 })
+
 export class AppComponent {
   private salaryDataService = inject(SalaryDataService);
+  private fb = inject(FormBuilder);
   public translations = inject(TranslationService);
 
-  jobTitleCompany = signal('Software Engineer at Google');
-  location = signal('San Francisco');
-  useMockData = signal(true);
 
+  searchForm = this.fb.group({
+    jobTitle: ['Software Engineer at Google', Validators.required],
+    location: ['San Francisco', Validators.required]
+  });
+
+  useMockData = signal(true);
   loading = signal(false);
   error = signal<string | null>(null);
   results = signal<JobSalary[]>([]);
   searched = signal(false);
 
+
   search(): void {
-    if (!this.jobTitleCompany() && !this.location()) {
-        this.error.set(this.translations.instant('errorEmptySearch'));
-        return;
+    if (this.searchForm.invalid) {
+      this.error.set(this.translations.instant('errorEmptySearch'));
+      return;
     }
+
 
     this.loading.set(true);
     this.error.set(null);
     this.results.set([]);
     this.searched.set(true);
 
-    const query = `${this.jobTitleCompany()} in ${this.location()}`.trim();
+    const { jobTitle, location } = this.searchForm.getRawValue();
+    const query = `${jobTitle} in ${location}`.trim();
+
 
     this.salaryDataService.searchSalaries(query, this.useMockData())
       .pipe(
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        next: (data) => {
+        next: (data: JobSalary[]) => {
           this.results.set(data);
           if (data.length === 0) {
             this.error.set(this.translations.instant('errorNoResults'));
           }
         },
-        error: (err) => {
+        error: (err: unknown) => {
           console.error(err);
           this.error.set(this.translations.instant('errorApi'));
         }
       });
+
   }
 
   toggleMockData(): void {
