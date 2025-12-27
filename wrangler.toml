@@ -1,4 +1,4 @@
-name = "salary-api-proxy"
+name = "how-to-answer-what-are-your-salary-expectations"
 main = "worker/index.js"
 compatibility_date = "2024-04-01"
 
