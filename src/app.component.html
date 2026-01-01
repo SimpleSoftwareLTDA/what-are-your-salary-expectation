@@ -40,17 +40,19 @@
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label for="jobTitle" class="block text-sm font-medium text-gray-300 mb-2">{{
-                translations.translate('jobTitleLabel')() }}</label>
-              <input id="jobTitle" formControlName="jobTitle" type="text"
+              <label for="jobTitle" class="block text-sm font-medium text-gray-300 mb-2">
+                {{ translations.translate('jobTitleLabel')() }} <span class="text-sky-500" aria-hidden="true">*</span>
+              </label>
+              <input id="jobTitle" formControlName="jobTitle" type="text" required aria-required="true"
                 [placeholder]="translations.translate('jobTitlePlaceholder')()"
                 class="w-full bg-gray-800/50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition duration-200" />
 
             </div>
             <div>
-              <label for="company" class="block text-sm font-medium text-gray-300 mb-2">{{
-                translations.translate('companyLabel')() }}</label>
-              <input id="company" formControlName="company" type="text"
+              <label for="company" class="block text-sm font-medium text-gray-300 mb-2">
+                {{ translations.translate('companyLabel')() }} <span class="text-sky-500" aria-hidden="true">*</span>
+              </label>
+              <input id="company" formControlName="company" type="text" required aria-required="true"
                 [placeholder]="translations.translate('companyPlaceholder')()"
                 class="w-full bg-gray-800/50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition duration-200" />
 
