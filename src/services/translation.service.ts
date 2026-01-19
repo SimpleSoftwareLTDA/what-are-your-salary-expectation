@@ -11,6 +11,7 @@ const translations = {
     jobTitlePlaceholder: 'e.g., Senior Product Manager',
     companyLabel: 'Company',
     companyPlaceholder: 'e.g., Spotify',
+    languageToggleLabel: 'Switch to Portuguese',
 
     searchButton: 'Search Salaries',
     searchingButton: 'Searching...',
@@ -38,6 +39,7 @@ const translations = {
     jobTitlePlaceholder: 'ex: Gerente de Produto Sênior',
     companyLabel: 'Empresa',
     companyPlaceholder: 'ex: Spotify',
+    languageToggleLabel: 'Mudar para Inglês',
 
     searchButton: 'Pesquisar Salários',
     searchingButton: 'Pesquisando...',
