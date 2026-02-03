@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal, inject, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 
 import { finalize } from 'rxjs/operators';
@@ -20,6 +20,7 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
     ResultsListComponent,
     SpinnerComponent,
     ErrorMessageComponent,
+    NgOptimizedImage,
   ],
 })
 

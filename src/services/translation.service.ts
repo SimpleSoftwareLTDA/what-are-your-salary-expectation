@@ -17,7 +17,7 @@ const translations = {
     noResultsTitle: 'No Results Yet',
     noResultsSubtitle: 'Your search results will appear here.',
     initialStateTitle: 'Ready to Search?',
-    initialStateSubtitle: 'Enter a job title and location to begin.',
+    initialStateSubtitle: 'Enter a job title and company to begin.',
     baseSalaryLabel: 'Base Salary',
     salaryRangeLabel: 'Monthly Salary',
     errorTitle: 'Oops! Something went wrong.',
@@ -29,6 +29,7 @@ const translations = {
     faq1A: 'The best approach is to provide a range based on market research. Use this tool to find real-world data and negotiate with confidence.',
     faq2Q: 'Why use real-world data for negotiations?',
     faq2A: 'Data-driven negotiations are more objective and persuasive. Knowing the market value for your role and location gives you leverage.',
+    toggleLanguageLabel: 'Switch to Portuguese',
   },
   pt: {
     title: 'Como Responder: Qual é a sua expectativa salarial?',
@@ -44,7 +45,7 @@ const translations = {
     noResultsTitle: 'Nenhum Resultado',
     noResultsSubtitle: 'Os resultados da sua pesquisa aparecerão aqui.',
     initialStateTitle: 'Pronto para Pesquisar?',
-    initialStateSubtitle: 'Digite um cargo e local para começar.',
+    initialStateSubtitle: 'Digite um cargo e empresa para começar.',
     baseSalaryLabel: 'Salário Base',
     salaryRangeLabel: 'Salário Mensal',
     errorTitle: 'Opa! Algo deu errado.',
@@ -56,6 +57,7 @@ const translations = {
     faq1A: 'A melhor abordagem é fornecer uma faixa baseada em pesquisa de mercado. Use esta ferramenta para encontrar dados reais e negociar com confiança.',
     faq2Q: 'Por que usar dados reais para negociações?',
     faq2A: 'Negociações baseadas em dados são mais objetivas e persuasivas. Saber o valor de mercado para seu cargo e local te dá vantagem.',
+    toggleLanguageLabel: 'Mudar para Inglês',
   }
 
 };
